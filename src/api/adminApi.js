@@ -150,7 +150,7 @@ export const getTokenUsageAndProcess = () => async (dispatch, getState) => {
       hourlyData,
     };
   } catch (error) {
-    let errorMessage = "Failed to fetch token usage data";
+    let errorMessage = "Failed to fetch token usage and process data";
 
     if (error.response?.data?.detail) {
       errorMessage = error.response.data.detail;
@@ -184,7 +184,7 @@ export const getTotalUsers = () => async (dispatch, getState) => {
       totalUser,
     };
   } catch (error) {
-    let errorMessage = "Failed to fetch token usage data";
+    let errorMessage = "Failed to fetch total users";
 
     if (error.response?.data?.detail) {
       errorMessage = error.response.data.detail;
@@ -218,7 +218,7 @@ export const getTotalActiveSession = () => async (dispatch, getState) => {
       totalActiveSessions,
     };
   } catch (error) {
-    let errorMessage = "Failed to fetch token usage data";
+    let errorMessage = "Failed to fetch total active session";
 
     if (error.response?.data?.detail) {
       errorMessage = error.response.data.detail;
@@ -281,7 +281,7 @@ export const getTotalFeedback = () => async (dispatch, getState) => {
       totalFeedbackCount,
     };
   } catch (error) {
-    let errorMessage = "Failed to fetch token usage data";
+    let errorMessage = "Failed to fetch total feedback data";
 
     if (error.response?.data?.detail) {
       errorMessage = error.response.data.detail;
@@ -355,7 +355,7 @@ export const getUserTrends = () => async (dispatch, getState) => {
       totalUserTrend,
     };
   } catch (error) {
-    let errorMessage = "Failed to fetch token usage data";
+    let errorMessage = "Failed to fetch user trend";
 
     if (error.response?.data?.detail) {
       errorMessage = error.response.data.detail;
@@ -388,7 +388,7 @@ export const getUserList = () => async (dispatch, getState) => {
       totalUserList,
     };
   } catch (error) {
-    let errorMessage = "Failed to fetch token usage data";
+    let errorMessage = "Failed to fetch user list";
 
     if (error.response?.data?.detail) {
       errorMessage = error.response.data.detail;
@@ -420,7 +420,7 @@ export const getstarFeedback = () => async (dispatch, getState) => {
       totalStarFeedback,
     };
   } catch (error) {
-    let errorMessage = "Failed to fetch token usage data";
+    let errorMessage = "Failed to stars feedback data";
 
     if (error.response?.data?.detail) {
       errorMessage = error.response.data.detail;
@@ -452,6 +452,40 @@ export const getInterviewTrend = () => async (dispatch, getState) => {
 
     return {
       totalInterviewData,
+    };
+  } catch (error) {
+    let errorMessage = "Failed to fetch total interview data";
+
+    if (error.response?.data?.detail) {
+      errorMessage = error.response.data.detail;
+    } else if (error.response?.status === 401) {
+      errorMessage = "Unauthorized - please login again";
+    } else if (error.response?.status === 403) {
+      errorMessage = "Access forbidden - admin rights required";
+    }
+    throw new Error(errorMessage);
+  }
+};
+
+export const getTokenUsageData = (page) => async (dispatch, getState) => {
+  const { auth } = getState();
+  const token = auth.token;
+  if (!token) {
+    throw new Error("No authentication token found");
+  }
+  try {
+    const response = await api.get(`/admin/token-usage?page=${page}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    // const totalStarFeedback = response.data.usages;
+    const totalTokenUsageData = response.data.usage_records;
+    console.log(totalTokenUsageData)
+    return {
+      totalTokenUsageData,
     };
   } catch (error) {
     let errorMessage = "Failed to fetch token usage data";

@@ -43,48 +43,6 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserList } from "../api/adminApi";
 
-// const userData = [
-//   {
-//     id: "U001",
-//     name: "John Doe",
-//     email: "john.doe@email.com",
-//     role: "premium",
-//     status: "active",
-//     lastActive: "2024-01-15T10:30:00",
-//     joinDate: "2023-08-15",
-//     sessionsCount: 45,
-//   },
-//   {
-//     id: "U002",
-//     name: "Jane Smith",
-//     email: "jane.smith@email.com",
-//     role: "user",
-//     status: "active",
-//     lastActive: "2024-01-14T16:45:00",
-//     joinDate: "2023-11-20",
-//     sessionsCount: 23,
-//   },
-//   {
-//     id: "U003",
-//     name: "Mike Johnson",
-//     email: "mike.johnson@email.com",
-//     role: "user",
-//     status: "inactive",
-//     lastActive: "2024-01-10T09:15:00",
-//     joinDate: "2023-09-10",
-//     sessionsCount: 12,
-//   },
-//   {
-//     id: "U004",
-//     name: "Sarah Wilson",
-//     email: "sarah.wilson@email.com",
-//     role: "admin",
-//     status: "active",
-//     lastActive: "2024-01-15T14:20:00",
-//     joinDate: "2023-06-05",
-//     sessionsCount: 67,
-//   },
-// ];
 
 export default function Users() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -96,74 +54,12 @@ export default function Users() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // const filteredUsers = userData.filter((user) => {
-  //   const matchesSearch =
-  //     user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  //     user.email.toLowerCase().includes(searchTerm.toLowerCase());
-  //   const matchesRole = roleFilter === "all" || user.role === roleFilter;
-  //   const matchesStatus =
-  //     statusFilter === "all" || user.status === statusFilter;
-
-  //   return matchesSearch && matchesRole && matchesStatus;
-  // });
-
-  // const getRoleBadge = (role) => {
-  //   switch (role) {
-  //     case "admin":
-  //       return (
-  //         <Badge className="bg-destructive/10 text-destructive border-destructive/20">
-  //           Admin
-  //         </Badge>
-  //       );
-  //     case "premium":
-  //       return (
-  //         <Badge className="bg-primary/10 text-primary border-primary/20">
-  //           Premium
-  //         </Badge>
-  //       );
-  //     case "user":
-  //       return <Badge variant="outline">User</Badge>;
-  //     default:
-  //       return <Badge variant="outline">{role}</Badge>;
-  //   }
-  // };
-
-  // const getStatusBadge = (status) => {
-  //   switch (status) {
-  //     case "active":
-  //       return (
-  //         <Badge className="bg-success/10 text-success border-success/20">
-  //           Active
-  //         </Badge>
-  //       );
-  //     case "inactive":
-  //       return <Badge variant="secondary">Inactive</Badge>;
-  //     case "suspended":
-  //       return <Badge variant="destructive">Suspended</Badge>;
-  //     default:
-  //       return <Badge variant="outline">{status}</Badge>;
-  //   }
-  // };
-
   const formatDate = (dateString) => {
     if(dateString === null){
       return "No Interview"
     }
     return new Date(dateString).toLocaleDateString();
   };
-
-  // const formatLastActive = (dateString) => {
-  //   const date = new Date(dateString);
-  //   const now = new Date();
-  //   const diffInHours = Math.floor(
-  //     (now.getTime() - date.getTime()) / (1000 * 60 * 60)
-  //   );
-
-  //   if (diffInHours < 1) return "Just now";
-  //   if (diffInHours < 24) return `${diffInHours}h ago`;
-  //   if (diffInHours < 48) return "Yesterday";
-  //   return formatDate(dateString);
-  // };
 
   const fetchTotalUsers = async () => {
     setLoading(true);

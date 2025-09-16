@@ -15,6 +15,7 @@ import Users from "./pages/Users";
 import RolesPermissions from "./pages/RolesPermissions";
 import Analytics from "./pages/Analytics";
 import NotFound from "./pages/NotFound";
+import TokenUsage from "./pages/TokenUsage";
 
 const queryClient = new QueryClient();
 
@@ -98,6 +99,7 @@ const App = () => (
                         <Route path="/sessions" element={<Dashboard />} />
                         <Route path="/analytics" element={<Analytics />} />
                         <Route path="/settings" element={<Dashboard />} />
+                        <Route path="/tokenusage" element={<TokenUsage />} />
                         <Route path="*" element={<NotFound />} />
                       </Routes>
                     </AdminLayout>

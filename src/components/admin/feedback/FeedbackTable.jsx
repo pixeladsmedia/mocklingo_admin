@@ -161,10 +161,9 @@ export function FeedbackTable() {
     ));
   };
 
-   const formatDate = (dateString) => {
+  const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString();
   };
-
 
   return (
     <Card>
@@ -198,7 +197,9 @@ export function FeedbackTable() {
               <SelectContent>
                 <SelectItem value="all">All Types</SelectItem>
                 <SelectItem value="interview">Interview</SelectItem>
-                <SelectItem value="english_practice">English Practice</SelectItem>
+                <SelectItem value="english_practice">
+                  English Practice
+                </SelectItem>
                 <SelectItem value="talkwithai">TalkWithAi</SelectItem>
               </SelectContent>
             </Select>

@@ -48,7 +48,7 @@ const navigation = [
   },
   {
     title: "Token Usage",
-    href: "/tokens",
+    href: "/tokenusage",
     icon: Zap,
   },
   {
