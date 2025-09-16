@@ -70,7 +70,7 @@ const App = () => (
       <TooltipProvider>
         {/* <Toaster /> */}
         <Sonner />
-        <BrowserRouter>
+        <BrowserRouter basename="/superadmin">
           <AuthChecker>
             <Routes>
               {/* Public route - only accessible when NOT logged in */}
